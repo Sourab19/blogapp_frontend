@@ -13,6 +13,9 @@ const Navbar = () => {
           </Typography>
           <Link to={'/blogs'} style={{color:'white'}}><Button color="inherit">Blogs</Button></Link>
           <Link to={'/addblog'} style={{color:'white'}}><Button color="inherit">AddBlog</Button></Link>
+          <Link to={'/'} style={{color:'white'}}><Button color="inherit" onClick={()=>
+            {sessionStorage.removeItem('token')}}>Logout</Button></Link>
+
         </Toolbar>
       </AppBar>
     </Box>

@@ -11,8 +11,12 @@ const Login = () => {
   const navigate=useNavigate();
   function capValue(){
     axios.post('http://localhost:3000/user/login',form).then((res)=>{
-      alert(res.data)
-      navigate('/blogs');
+      alert(res.data.message);
+      if(res.data.token){
+        sessionStorage.setItem('token',res.data.token)
+        navigate('/blogs');
+      }
+      
     }).catch((err)=>{
       console.log(err);
     })
@@ -24,7 +28,7 @@ const Login = () => {
         <Typography  variant='h3' style={{color:'purple'}}> BlogApp Login</Typography>
       </Grid>
       <Grid size={12} style={{marginTop:'2%'}}>
-        <TextField  variant='outlined' name='email 'label='Email' onChange={(e)=>{
+        <TextField  variant='outlined' name='email 'label='Email'   onChange={(e)=>{
           setForm({...form,email:e.target.value})
         }} ></TextField>
       </Grid>

@@ -1,17 +1,26 @@
 import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../axiosInterceptor';
 
 const Blogs = () => {
     // const data=[{blogname:'FoodBlog',blogimg:'',blogdesc:'Food Blog'},{blogname:'TravelBlog',blogimg:'',blogdesc:'Travel Blog'},{blogname:'MovieBlog',blogimg:'',blogdesc:'Movie Blog'}]
  const [data,setData] =useState([]);
+ const navigate =useNavigate();
  useEffect(()=>{
-  axios.get("http://localhost:3000/blog").then((res)=>{
+  axiosInstance.get("http://localhost:3000/blog").then((res)=>{
     setData(res.data);
   }).catch((err)=>{
     console.log(err);
   })
  },[])
+
+ function update_val(val){
+   navigate('/addblog',{state:{val}});
+ }
+
+
     return (
     <Box sx={{ flexGrow: 1 }} >
       <Grid container spacing={2} style={{marginTop:'3%'}}>
@@ -32,7 +41,9 @@ const Blogs = () => {
       {item.blogDescription}
       </Typography>
       <br /><br />
-      <Button  variant='contained' color='warning' >Update</Button>
+      <Button  variant='contained' color='warning' onClick={()=>{
+        update_val(item);
+      }} >Update</Button>
       <Button  variant='contained' color='error' style={{marginLeft:'10%'}} >Delete</Button>
       
 
