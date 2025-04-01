@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
@@ -14,7 +14,7 @@ const Blogs = () => {
  },[])
     return (
     <Box sx={{ flexGrow: 1 }} >
-      <Grid container spacing={2} style={{marginTop:'15%'}}>
+      <Grid container spacing={2} style={{marginTop:'3%'}}>
         {data.map((item)=>(
         <Grid size={4}>
         
@@ -31,6 +31,11 @@ const Blogs = () => {
       <Typography variant="body2" sx={{ color: 'text.secondary' }}>
       {item.blogDescription}
       </Typography>
+      <br /><br />
+      <Button  variant='contained' color='warning' >Update</Button>
+      <Button  variant='contained' color='error' style={{marginLeft:'10%'}} >Delete</Button>
+      
+
     </CardContent>
     
   </Card>
