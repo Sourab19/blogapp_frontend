@@ -47,7 +47,7 @@ const AddBlog = () => {
       })
     }
     else{
-      axiosInstance.put('http://localhost:3000/blog/add',form).then((res)=>{
+      axiosInstance.post('http://localhost:3000/blog/add',form).then((res)=>{
         alert('Added Successfully')
         navigate('/blogs');
       }).catch((error)=>{
